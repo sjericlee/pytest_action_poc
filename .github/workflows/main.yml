@@ -19,8 +19,19 @@ jobs:
       with:
         python-version: '3.9'
         
-    - name: Install Pytest
-      run: pip install pytest
+    - name: Install Dependencies
+      run: |
+        pip install pytest
+        python3 -m pip install coverage
 
-    - name: Run Pytest
-      run: pytest tests/
+    - name: Run Pytest and Get Coverage
+      run: |
+        coverage run -m pytest tests/
+        coverage report -m > coverage.txt
+        
+    - name: Upload Coverage Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report
+        path: coverage.txt
+        
