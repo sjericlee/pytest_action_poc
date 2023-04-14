@@ -20,4 +20,4 @@ jobs:
         python-version: '3.9'
 
     - name: Run Pytest
-      run: pytest tests/
+      run: pytest
